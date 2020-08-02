@@ -41,7 +41,7 @@ router.post('/addLead',[authenticate],async function(req,res){
         
         console.log(req.body);
 
-        let url = process.env.DB;
+        let url = process.env.DB1;
         let client = await MongoDb.connect(url);
         let db = await client.db("users");
         let data = await db.collection("Leads").insertOne({
@@ -70,7 +70,7 @@ router.get('/getLeads',async function(req,res){
 
     try {
   
-      let url = process.env.DB;
+      let url = process.env.DB1;
       let client = await MongoDb.connect(url);
       let db = await client.db("users");
       let data = await db.collection("Leads").find().toArray();
@@ -88,7 +88,7 @@ router.put('/updateLead',[authenticate],async function(req,res){
 
     try {
   
-      let url = process.env.DB;
+      let url = process.env.DB1;
       let client = await MongoDb.connect(url);
       let db = await client.db("users");
       let data = await db.collection("Leads").updateOne(
@@ -119,7 +119,7 @@ router.delete('/deleteLead/:id',[authenticate],async function(req,res){
 
     try {
   
-      let url = process.env.DB;
+      let url = process.env.DB1;
       let client = await MongoDb.connect(url);
       let db = await client.db("users");
       let data = await db.collection("Leads").deleteOne(
@@ -141,7 +141,7 @@ router.delete('/deleteLead/:id',[authenticate],async function(req,res){
 
     try {
   
-      let url = process.env.DB;
+      let url = process.env.DB1;
       let client = await MongoDb.connect(url);
       let db = await client.db("users");
       let data = await db.collection("Leads").count();

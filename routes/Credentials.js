@@ -18,7 +18,7 @@ router.post('/signUp',async function(req,res){
       let hash = await bcrypt.hash(req.body.password,salt)
       req.body.password = hash
 
-      let url = process.env.DB;
+      let url = process.env.DB1;
       let client = await MongoDb.connect(url);
       let db = await client.db("users");
       let email = await db.collection("userEmails").insertOne({"email" : req.body.email})
@@ -52,7 +52,7 @@ router.post('/signIn',async function(req,res){
   try {
 
     console.log(req.body);
-    let url = process.env.DB;
+    let url = process.env.DB1;
     let client = await MongoDb.connect(url);
     let db = await client.db("users");
     let result = await db.collection("userEmails").findOne({email : { $eq : req.body.email}})
@@ -95,7 +95,7 @@ router.post('/signIn',async function(req,res){
 
 router.get('/verifyEmail/:email',async function(req,res){
   try {
-    let url = process.env.DB;
+    let url = process.env.DB1;
     let client = await MongoDb.connect(url);
     let db = await client.db("users");
     let result = await db.collection("userEmails").findOne({email : { $eq : req.params.email}})
